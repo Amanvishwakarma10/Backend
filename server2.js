@@ -81,8 +81,8 @@ app.post("/api/razorpay-order", async (req, res) => {
 const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        user: process.env.EMAIL_KEY_USER,
+        pass: process.env.EMAIL_KEY_PASS,
     },
 });
 
@@ -103,15 +103,15 @@ app.post("/contact", (req, res) => {
 
         // Email to Admin
         const adminMailOptions = {
-            from: process.env.EMAIL_USER,
-            to: process.env.RECEIVER_EMAIL, // Admin's email
+            from: process.env.EMAIL_KEY_USER,
+            to: process.env.RECEIVER_KEY_EMAIL, // Admin's email
             subject: `New Contact Form Submission from ${name}`,
             text: `You have received a new message:\n\nName: ${name}\nEmail: ${email}\nSubject: ${subject}\nMessage: ${message}`,
         };
 
         // Email to User (Confirmation)
         const userMailOptions = {
-            from: process.env.EMAIL_USER,
+            from: process.env.EMAIL_KEY_USER,
             to: email, // User's email
             subject: "Thank you for contacting us!",
             text: `Hello ${name},\n\nThank you for reaching out to us! We have received your message and will get back to you soon.\n\nBest regards,\nE-Learning Team`,
